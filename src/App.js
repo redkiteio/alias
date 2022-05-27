@@ -19,19 +19,13 @@ function App() {
     [prompt]
   );
 
-  if (!isVisible) {
-    return <div />;
-  }
-
   return (
     <div>
       12345
-    <div onClick={hide}>
-      2
+    {isVisible && <div onClick={hide}>
       <button onClick={hide}>Close</button>
-      Hello! Wanna add to homescreen?
       <button onClick={promptToInstall}>Add to homescreen</button>
-    </div>
+    </div>}
     </div>
   );
 }
