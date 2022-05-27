@@ -25,7 +25,7 @@ function App() {
 
   return (
     <div>
-      3
+      12345
     <div onClick={hide}>
       2
       <button onClick={hide}>Close</button>
