@@ -24,11 +24,14 @@ function App() {
   }
 
   return (
+    <div>
+      3
     <div onClick={hide}>
       2
       <button onClick={hide}>Close</button>
       Hello! Wanna add to homescreen?
       <button onClick={promptToInstall}>Add to homescreen</button>
+    </div>
     </div>
   );
 }

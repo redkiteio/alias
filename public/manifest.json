@@ -1,6 +1,7 @@
 {
   "short_name": "Alias",
   "name": "Alias",
+  "description": "Alias - idioms",
   "icons": [
     {
       "src": "favicon.ico",
@@ -19,7 +20,6 @@
     }
   ],
   "start_url": "/alias/",
-  "scope": "/",
   "display": "standalone",
   "theme_color": "#000000",
   "background_color": "#ffffff"
