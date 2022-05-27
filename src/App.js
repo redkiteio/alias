@@ -1,4 +1,4 @@
-import * as React from "react";
+import { useState, useEffect } from "react";
 import './App.css';
 import { useAddToHomescreenPrompt } from "./useAddToHomescreenPrompt";
 
@@ -6,25 +6,22 @@ import { useAddToHomescreenPrompt } from "./useAddToHomescreenPrompt";
 function App() {
 
   const [prompt, promptToInstall] = useAddToHomescreenPrompt();
-  const [isVisible, setVisibleState] = React.useState(false);
+  const [isVisible, setVisibleState] = useState(false);
 
   const hide = () => setVisibleState(false);
 
-  React.useEffect(
-    () => {
+  useEffect(() => {
       if (prompt) {
         setVisibleState(true);
       }
-    },
-    [prompt]
-  );
+    }, [prompt]);
 
   return (
     <div>
-      12345
+      1234567
     {isVisible && <div onClick={hide}>
       <button onClick={hide}>Close</button>
-      <button onClick={promptToInstall}>Add to homescreen</button>
+      <button onClick={promptToInstall}>Download the App</button>
     </div>}
     </div>
   );
