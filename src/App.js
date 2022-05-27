@@ -18,7 +18,7 @@ function App() {
 
   return (
     <div>
-      1234567
+      123456789
     {isVisible && <div onClick={hide}>
       <button onClick={hide}>Close</button>
       <button onClick={promptToInstall}>Download the App</button>
