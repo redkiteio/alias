@@ -1,12 +1,12 @@
-import { useEffect } from 'react';
+import { useLayoutEffect } from 'react';
 import './App.css';
 
 
 function App() {
-  useEffect(() => {
+  useLayoutEffect(() => {
     let deferredPrompt;
 const addBtn = document.querySelector('.add-button');
-addBtn.style.display = 'none';
+// addBtn.style.display = 'none';
 
 window.addEventListener('beforeinstallprompt', (e) => {
   // Prevent Chrome 67 and earlier from automatically showing the prompt
@@ -18,7 +18,7 @@ window.addEventListener('beforeinstallprompt', (e) => {
 
   addBtn.addEventListener('click', () => {
     // hide our user interface that shows our A2HS button
-    addBtn.style.display = 'none';
+    // addBtn.style.display = 'none';
     // Show the prompt
     deferredPrompt.prompt();
     // Wait for the user to respond to the prompt
@@ -35,7 +35,7 @@ window.addEventListener('beforeinstallprompt', (e) => {
   }, [])
   return (
     <div className="App">
-
+1
       <button className="add-button">Add to home screen</button>
     </div>
   );
