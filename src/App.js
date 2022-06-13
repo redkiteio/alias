@@ -17,7 +17,6 @@ function App() {
 
     return (
         <div>
-            1234567891234
             {isVisible && (
                 <div onClick={hide}>
                     <button onClick={hide}>Close</button>
