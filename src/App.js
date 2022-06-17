@@ -1,30 +1,46 @@
 import { useState, useEffect } from "react";
-import Alias from "./alias/Alias";
+import { Button, Typography } from "@mui/material";
+import Alias from "./components/alias/Alias";
 import "./App.css";
 import { useAddToHomescreenPrompt } from "./useAddToHomescreenPrompt";
 
 function App() {
     const [prompt, promptToInstall] = useAddToHomescreenPrompt();
-    const [isVisible, setVisibleState] = useState(false);
+    const [isVisibleOffer, setIsVisibleOffer] = useState(true);
 
-    const hide = () => setVisibleState(false);
+    const hide = () => setIsVisibleOffer(false);
 
     useEffect(() => {
         if (prompt) {
-            setVisibleState(true);
+            setIsVisibleOffer(true);
         }
     }, [prompt]);
 
     return (
-        <div>
-            {isVisible && (
-                <div onClick={hide}>
-                    <button onClick={hide}>Close</button>
-                    <button onClick={promptToInstall}>Download the App</button>
-                </div>
+        <Typography component="div">
+            {isVisibleOffer && (
+                <Typography
+                    component="div"
+                    sx={{
+                        width: "400px",
+                        padding: "10px",
+                        margin: "0 auto",
+                        textAlign: "center",
+                    }}
+                >
+                    <Typography component="p" variant="h5" marginBottom={2}>
+                        Would you like to download the application?
+                    </Typography>
+                    <Button variant="contained" onClick={hide} sx={{ marginRight: 2 }}>
+                        Close and start
+                    </Button>
+                    <Button variant="contained" onClick={promptToInstall}>
+                        Download the App
+                    </Button>
+                </Typography>
             )}
-            <Alias />
-        </div>
+            {!isVisibleOffer && <Alias />}
+        </Typography>
     );
 }
 
