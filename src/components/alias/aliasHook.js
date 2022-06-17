@@ -25,15 +25,15 @@ const useAlias = () => {
 
     const handleRestartGame = () => {
         setIsGameStarted(false);
-        setTime(0);
-        setTimeCopy(0);
+        setTime(60);
+        setTimeCopy(60);
         setTurn("teamOne");
         setWinner("");
-        setTeamOne("");
-        setTeamTwo("");
+        setTeamOne("Team-1");
+        setTeamTwo("Team-2");
         setTeamOneCount(0);
         setTeamTwoCount(0);
-        setWinningCount(0);
+        setWinningCount(50);
         setIsMiddleRound(false);
         setModalState(false);
         createList();
@@ -70,6 +70,9 @@ const useAlias = () => {
     const handleModalState = () => {
         setModalState(!modalState);
         if (modalState) setCurrentPhraseDescription("");
+        if (isGameStarted && isMiddleRound) {
+            handleContinueGame();
+        }
     };
 
     const handleCurrentDescription = (description) => {
@@ -125,9 +128,6 @@ const useAlias = () => {
                 setIsMiddleRound(true);
             }
         }
-    }, [time, isGameStarted]);
-
-    useEffect(() => {
         if (isGameStarted && time === 0 && round % 2 === 0) {
             let winner;
             const isAboveWinningCount = teamOneCount >= winningCount || teamTwoCount >= winningCount;
@@ -139,7 +139,7 @@ const useAlias = () => {
                 setIsMiddleRound(false);
             }
         }
-    }, [teamOneCount, teamTwoCount, time]);
+    }, [time, isGameStarted]);
 
     return {
         time,

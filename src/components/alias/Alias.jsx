@@ -64,7 +64,7 @@ const Alias = () => {
                             label="seconds"
                             variant="filled"
                             value={time || ""}
-                            sx={{ width: "80px", display: "block" }}
+                            sx={{ width: "80px" }}
                             onChange={(e) => handleGameChange(e, "time")}
                             InputProps={{
                                 inputProps: { min: 0 },
@@ -76,7 +76,7 @@ const Alias = () => {
                             variant="filled"
                             label="winning count"
                             value={winningCount || ""}
-                            sx={{ width: "80px", display: "block" }}
+                            sx={{ width: "80px" }}
                             onChange={(e) => handleGameChange(e, "winningCount")}
                             InputProps={{
                                 inputProps: { min: 0 },
@@ -206,6 +206,9 @@ const Alias = () => {
                     </Modal>
                     <Button fullWidth size="small" color="primary" variant="contained" onClick={createList}>
                         Next
+                    </Button>
+                    <Button fullWidth size="small" color="secondary" variant="contained" onClick={handleRestartGame} sx={{ marginTop: "15px" }}>
+                        Restart game
                     </Button>
                 </Typography>
             )}
