@@ -6,7 +6,6 @@ import useAlias from "./aliasHook";
 const Alias = () => {
     const {
         time,
-        turn,
         winner,
         teamOne,
         teamTwo,
