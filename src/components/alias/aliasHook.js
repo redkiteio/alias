@@ -1,8 +1,13 @@
 import { useEffect, useState } from "react";
+import axios from "axios";
 import { sampleSize } from "lodash";
-import { words as localMock } from "./words";
+
+const sheet_id = process.env.REACT_APP_SHEET_ID;
+const api_key = process.env.REACT_APP_API_KEY;
 
 const useAlias = () => {
+    const [wordsFromSheet, setWordsFromSheet] = useState([]);
+    const [wordsList, setWordsList] = useState([]);
     const [round, setRound] = useState(1);
     const [time, setTime] = useState(60);
     const [timeCopy, setTimeCopy] = useState(60);
@@ -15,7 +20,6 @@ const useAlias = () => {
     const [winningCount, setWinningCount] = useState(50);
     const [isGameStarted, setIsGameStarted] = useState(false);
     const [isMiddleRound, setIsMiddleRound] = useState(false);
-    const [wordsList, setWordsList] = useState([]);
     const [modalState, setModalState] = useState(false);
     const [currentPhraseDescription, setCurrentPhraseDescription] = useState("");
 
@@ -81,7 +85,7 @@ const useAlias = () => {
     };
 
     const createList = () => {
-        const randomList = sampleSize(localMock, 5);
+        const randomList = sampleSize(wordsFromSheet, 5);
         const transformToState = randomList.map((word) => {
             return { ...word, isGuessed: false };
         });
@@ -110,9 +114,30 @@ const useAlias = () => {
         setWordsList(toggledStateGuess);
     };
 
+    const getWordsFromSheet = async () => {
+        // sheet link https://docs.google.com/spreadsheets/d/1v_wa4EHH_X3hqpwQ0Sf2z0RW0W344nRqY-U_t-7wBvY/edit#gid=0
+        try {
+            const res = await axios.get(`https://sheets.googleapis.com/v4/spreadsheets/${sheet_id}/values:batchGet?ranges=Sheet1!A2:Z10000&key=${api_key}`);
+            const wordsFromSheet = res?.data?.valueRanges[0]?.values;
+            const reqFormat = [];
+            if (!!wordsFromSheet.length) {
+                for (const [phrase, description] of wordsFromSheet) {
+                    reqFormat.push({ phrase, description });
+                }
+            }
+            setWordsFromSheet(reqFormat);
+        } catch (e) {
+            console.log(e);
+        }
+    };
+
+    useEffect(() => {
+        getWordsFromSheet();
+    }, []);
+
     useEffect(() => {
         createList();
-    }, []);
+    }, [wordsFromSheet]);
 
     useEffect(() => {
         if (isGameStarted && time > 0) {
@@ -143,7 +168,6 @@ const useAlias = () => {
 
     return {
         time,
-        turn,
         winner,
         teamOne,
         teamTwo,
