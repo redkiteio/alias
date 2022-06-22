@@ -1,7 +1,6 @@
 import { Typography, Button, IconButton, Tooltip, Modal, Box, TextField } from "@mui/material";
 import { LightbulbOutlined as LightbulbOutlinedIcon, CloseOutlined as CloseOutlinedIcon } from "@mui/icons-material";
 import useAlias from "./aliasHook";
-// import AddForm from "./AddForm";
 
 const Alias = () => {
     const {
