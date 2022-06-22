@@ -6,7 +6,7 @@ import { useAddToHomescreenPrompt } from "./useAddToHomescreenPrompt";
 import { isIOS } from "./utils";
 
 function App() {
-    const [isVisibleOffer, setIsVisibleOffer] = useState(true);
+    const [isVisibleOffer, setIsVisibleOffer] = useState(false);
     const [prompt, promptToInstall] = useAddToHomescreenPrompt();
 
     const hide = () => setIsVisibleOffer(false);
